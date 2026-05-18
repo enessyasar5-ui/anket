@@ -579,6 +579,32 @@
     h1 { font-size: 32px; }
     .section-title { font-size: 20px; }
     .meta { gap: 20px; font-size: 12px; }
+    
+    /* ─── LIKERT RESPONSIVE ─── */
+    .likert-table {
+      overflow-x: visible;
+    }
+    
+    table.likert {
+      min-width: 100%;
+    }
+    
+    table.likert th,
+    table.likert td {
+      padding: 10px 6px;
+      font-size: 12px;
+    }
+    
+    table.likert th:first-child,
+    table.likert td:first-child {
+      width: 50%;
+      padding-left: 12px;
+    }
+    
+    table.likert input[type="radio"] {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   /* ─── FOOTER ORNAMENT ─── */
@@ -602,12 +628,12 @@
     <div class="eyebrow">İK Araştırması · 2026</div>
     <h1>Çalışan deneyimini <em>yeniden</em> düşünmek için bir araştırma.</h1>
     <p class="lead">
-      Bu anket, çalışan deneyimi, kurum içi sosyal etkileşim ve ulaşım yönetimi alanlarında geliştirilen bir platform için hazırlanmıştır. Amacımız ürün tanıtmak değil; kurumların bu alanlarda gerçekte ne yaşadığını öğrenmektir.
+      Bu anket, çalışan deneyimi, kurum içi sosyal etkileşim ve ulaşım yönetimi alanlarında kurumunuz için hazırlanmıştır. Amacımız ürün tanıtmak değil; ihtiyaçlarınızı anlamak ve daha iyi çözümler geliştirmektir.
     </p>
     <div class="meta">
-      <span>Tahmini süre: 8–10 dk</span>
+      <span>Tahmini süre: 5–7 dk</span>
       <span>Anonim yanıt</span>
-      <span>30 soru</span>
+      <span>18 soru</span>
     </div>
   </header>
 
@@ -615,37 +641,28 @@
     <input type="hidden" name="_subject" value="İK Anketi — Yeni Yanıt">
     <p style="display:none;"><label>Boş bırakın: <input name="_gotcha"></label></p>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <!-- BÖLÜM 1 — PROFİL -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <section>
       <div class="section-header">
-        <span class="section-number">01 / 07</span>
+        <span class="section-number">01 / 04</span>
         <h2 class="section-title">Profil</h2>
       </div>
 
       <div class="question">
         <label class="question-label"><span class="question-q">S1.</span>Kurumunuzdaki rolünüzü en iyi tanımlayan seçenek hangisidir?</label>
         <div class="options">
-          <label class="option"><input type="radio" name="s1_rol" value="ik_direktor"><span>İK Direktörü / Başkanı</span></label>
-          <label class="option"><input type="radio" name="s1_rol" value="ik_yonetici"><span>İK Yöneticisi</span></label>
-          <label class="option"><input type="radio" name="s1_rol" value="calisan_deneyimi"><span>Çalışan Deneyimi / Bağlılık Uzmanı</span></label>
-          <label class="option"><input type="radio" name="s1_rol" value="idari"><span>İdari İşler / Operasyon</span></label>
-          <label class="option"><input type="radio" name="s1_rol" value="ise_alim"><span>İşe Alım / Yetenek Yönetimi</span></label>
+          <label class="option"><input type="radio" name="s1_rol" value="ik_yonetim"><span>İK Yönetimi (İK Direktörü, Müdürü, Yöneticisi)</span></label>
+          <label class="option"><input type="radio" name="s1_rol" value="yonetim"><span>Üst Yönetim / Operasyon</span></label>
           <label class="option"><input type="radio" name="s1_rol" value="diger" id="s1_diger_radio"><span>Diğer</span></label>
         </div>
         <input type="text" name="s1_diger" placeholder="Rolünüzü yazın..." style="margin-top:10px; display:none;" id="s1_diger_input">
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S2.</span>Sorumlu olduğunuz çalışan sayısı yaklaşık kaçtır?</label>
-        <div class="options">
-          <label class="option"><input type="radio" name="s2_calisan" value="50_alti"><span>50'den az</span></label>
-          <label class="option"><input type="radio" name="s2_calisan" value="50_200"><span>50 – 200</span></label>
-          <label class="option"><input type="radio" name="s2_calisan" value="200_500"><span>200 – 500</span></label>
-          <label class="option"><input type="radio" name="s2_calisan" value="500_1000"><span>500 – 1000</span></label>
-          <label class="option"><input type="radio" name="s2_calisan" value="1000_artisi"><span>1000+</span></label>
-        </div>
+        <label class="question-label"><span class="question-q">S2.</span>Sorumlu olduğunuz çalışan sayısını yazınız.</label>
+        <input type="text" name="s2_calisan" placeholder="Yaklaşık sayı (örn: 150)">
       </div>
 
       <div class="question">
@@ -670,24 +687,23 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <!-- BÖLÜM 2 — MEVCUT DURUM -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <section>
       <div class="section-header">
-        <span class="section-number">02 / 07</span>
+        <span class="section-number">02 / 04</span>
         <h2 class="section-title">Mevcut durum</h2>
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S5.</span>Şu anda çalışanlarınıza yönelik etkinlikleri (eğitim, networking, sosyal buluşma vb.) hangi kanallar üzerinden yönetiyorsunuz?</label>
+        <label class="question-label"><span class="question-q">S5.</span>Şu anda çalışanlarınıza yönelik etkinlikleri hangi kanallar üzerinden duyuruyorsunuz?</label>
         <p class="question-hint">Birden fazla seçenek işaretleyebilirsiniz.</p>
         <div class="options">
           <label class="option"><input type="checkbox" name="s5_kanal" value="email"><span>E-posta duyurusu</span></label>
           <label class="option"><input type="checkbox" name="s5_kanal" value="whatsapp"><span>WhatsApp grupları</span></label>
-          <label class="option"><input type="checkbox" name="s5_kanal" value="intranet"><span>Kurumsal intranet</span></label>
+          <label class="option"><input type="checkbox" name="s5_kanal" value="intranet"><span>Kurumsal intranet/platform</span></label>
           <label class="option"><input type="checkbox" name="s5_kanal" value="teams_slack"><span>Microsoft Teams / Slack</span></label>
-          <label class="option"><input type="checkbox" name="s5_kanal" value="ucuncu_parti"><span>Üçüncü parti etkinlik platformu (Eventbrite vb.)</span></label>
           <label class="option"><input type="checkbox" name="s5_kanal" value="manuel"><span>Manuel takip (Excel, kâğıt)</span></label>
           <label class="option"><input type="checkbox" name="s5_kanal" value="yok"><span>Hiçbiri / etkinlik düzenlemiyoruz</span></label>
         </div>
@@ -764,13 +780,13 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <!-- BÖLÜM 3 — PROBLEMLER -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <section>
       <div class="section-header">
-        <span class="section-number">03 / 07</span>
-        <h2 class="section-title">Problemler</h2>
+        <span class="section-number">03 / 04</span>
+        <h2 class="section-title">Problemler ve ihtiyaçlar</h2>
       </div>
 
       <div class="question">
@@ -816,18 +832,18 @@
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S10.</span>Son 12 ayda çalışan bağlılığı veya memnuniyetini artırmak için aldığınız en önemli aksiyon neydi?<span class="optional-tag">opsiyonel</span></label>
+        <label class="question-label"><span class="question-q">S10.</span>Son 12 ayda çalışan bağlılığını artırmak için aldığınız en önemli aksiyon neydi?<span class="optional-tag">İsteğe Bağlı</span></label>
         <textarea name="s10_aksiyon" placeholder="Kısaca yazabilirsiniz..."></textarea>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- BÖLÜM 4 — BÜTÇE VE KARAR SÜRECİ -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- BÖLÜM 4 — KONSEPT TERCİHLERİ -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <section>
       <div class="section-header">
-        <span class="section-number">04 / 07</span>
-        <h2 class="section-title">Bütçe ve karar süreci</h2>
+        <span class="section-number">04 / 04</span>
+        <h2 class="section-title">Çözüm tercihleri</h2>
       </div>
 
       <div class="question">
@@ -857,7 +873,7 @@
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S13.</span>Bu tür bir platform için satın alma kararı genellikle hangi süreçten geçer?</label>
+        <label class="question-label"><span class="question-q">S13.</span>Kurum içinde kullanılan bir platform için satın alma kararı genellikle hangi süreçten geçer?</label>
         <div class="options">
           <label class="option"><input type="radio" name="s13_karar" value="ik"><span>Yalnızca İK departmanı karar verir</span></label>
           <label class="option"><input type="radio" name="s13_karar" value="ik_cfo"><span>İK + bütçe onayı (CFO)</span></label>
@@ -868,299 +884,129 @@
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S14.</span>Yeni bir çalışan deneyimi aracı için tipik karar süresi yaklaşık ne kadardır?</label>
+        <label class="question-label"><span class="question-q">S14.</span>Şirkete özel kapalı dijital bir alan (etkinlik, ağ, ulaşım yönetimi için) kurulmasının sizce faydası ne olur?</label>
         <div class="options">
-          <label class="option"><input type="radio" name="s14_sure" value="1_ay_alti"><span>1 aydan kısa</span></label>
-          <label class="option"><input type="radio" name="s14_sure" value="1_3_ay"><span>1 – 3 ay</span></label>
-          <label class="option"><input type="radio" name="s14_sure" value="3_6_ay"><span>3 – 6 ay</span></label>
-          <label class="option"><input type="radio" name="s14_sure" value="6_ay_ustu"><span>6+ ay</span></label>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- BÖLÜM 5 — ÜRÜN KONSEPT TERCİHLERİ -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section>
-      <div class="section-header">
-        <span class="section-number">05 / 07</span>
-        <h2 class="section-title">Konsept tercihleri</h2>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S15.</span>Çalışanlarınızın <em>lokasyon olarak yakın diğer şirketlerin çalışanlarıyla</em> ortak bir ulaşım havuzunda yer almasına nasıl yaklaşırsınız?</label>
-        <p class="question-hint">Örnek: Birbirine yakın konumdaki, kurumsal olarak doğrulanmış kişilerden oluşan bir havuz.</p>
-        <div class="options">
-          <label class="option"><input type="radio" name="s15_havuz" value="kesinlikle_hayir"><span>Kesinlikle istemem</span></label>
-          <label class="option"><input type="radio" name="s15_havuz" value="cekince"><span>Çekincelerim olur, zor karar veririm</span></label>
-          <label class="option"><input type="radio" name="s15_havuz" value="kosullu"><span>Belli koşullarda kabul edebilirim</span></label>
-          <label class="option"><input type="radio" name="s15_havuz" value="acik"><span>Açığım, faydalı görüyorum</span></label>
-          <label class="option"><input type="radio" name="s15_havuz" value="kesinlikle_evet"><span>Kesinlikle isterim</span></label>
+          <label class="option"><input type="radio" name="s14_dijital" value="cok_fayda"><span>Çok faydalı olur, önemli bir ihtiyaç</span></label>
+          <label class="option"><input type="radio" name="s14_dijital" value="biraz_fayda"><span>Biraz faydalı olabilir</span></label>
+          <label class="option"><input type="radio" name="s14_dijital" value="kararsiz"><span>Kararsızım</span></label>
+          <label class="option"><input type="radio" name="s14_dijital" value="az_fayda"><span>Az faydası olur</span></label>
+          <label class="option"><input type="radio" name="s14_dijital" value="hic_fayda"><span>Hiç gerek yok</span></label>
         </div>
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S16.</span>"Belli koşullarda kabul edebilirim" veya "çekincelerim olur" diyorsanız: hangi koşullar bu kararı kolaylaştırır?<span class="optional-tag">opsiyonel</span></label>
+        <label class="question-label"><span class="question-q">S15.</span>Aşağıdaki özelliklerden hangileri sizin için en önemlidir?</label>
         <p class="question-hint">Birden fazla seçenek işaretleyebilirsiniz.</p>
         <div class="options">
-          <label class="option"><input type="checkbox" name="s16_kosul" value="dogrulama"><span>Karşı şirketin de aynı doğrulama standardını uyguluyor olması</span></label>
-          <label class="option"><input type="checkbox" name="s16_kosul" value="yakin_lokasyon"><span>Yalnızca yakın lokasyondaki şirketler</span></label>
-          <label class="option"><input type="checkbox" name="s16_kosul" value="sigorta"><span>Sürücülerin ek bir sigorta kapsamında olması</span></label>
-          <label class="option"><input type="checkbox" name="s16_kosul" value="kimlik"><span>Yolcuların kimlik doğrulamasının yapılmış olması</span></label>
-          <label class="option"><input type="checkbox" name="s16_kosul" value="guzergah"><span>Sadece belirli güzergahlarda</span></label>
-          <label class="option"><input type="checkbox" name="s16_kosul" value="cikis"><span>Şirketin istediği zaman havuzdan çıkabilmesi</span></label>
+          <label class="option"><input type="checkbox" name="s15_ozellık" value="kapal_alan"><span>Şirkete özel kapalı alan</span></label>
+          <label class="option"><input type="checkbox" name="s15_ozellık" value="detayli_raporlar"><span>Detaylı katılım ve etkileşim raporları</span></label>
+          <label class="option"><input type="checkbox" name="s15_ozellık" value="surucu_eslesme"><span>Sürücü-yolcu eşleştirme (ulaşım havuzu)</span></label>
+          <label class="option"><input type="checkbox" name="s15_ozellık" value="departman_yetki"><span>Departman bazlı yetkilendirme</span></label>
+          <label class="option"><input type="checkbox" name="s15_ozellık" value="bildirim"><span>Otomatik etkinlik hatırlatmaları</span></label>
         </div>
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S17.</span>Çalışanınız başka bir çalışanı kendi aracıyla taşırken kaza geçirirse, kurumsal sorumluluk konusunda ne hissedersiniz?</label>
+        <label class="question-label"><span class="question-q">S16.</span>Etkinlikleri çalışanlara nasıl sunmayı tercih edersiniz?</label>
         <div class="options">
-          <label class="option"><input type="radio" name="s17_sorumluluk" value="platform"><span>Bu tamamen platform/sigorta sorumluluğundadır, bizi ilgilendirmez</span></label>
-          <label class="option"><input type="radio" name="s17_sorumluluk" value="kismi"><span>Kısmen kurumumuzu da bağlar, sigorta detayını çok iyi anlamak isteriz</span></label>
-          <label class="option"><input type="radio" name="s17_sorumluluk" value="risk"><span>Bu ciddi bir risk, böyle bir sistemi onaylamak zor olur</span></label>
-          <label class="option"><input type="radio" name="s17_sorumluluk" value="kararsiz"><span>Karar veremiyorum</span></label>
+          <label class="option"><input type="radio" name="s16_etkinlik_tip" value="tek"><span>Tek seferlik etkinlikler (kahvaltı, parti vb.)</span></label>
+          <label class="option"><input type="radio" name="s16_etkinlik_tip" value="zincir"><span>Seri/zincir etkinlikler (örn. 4 haftalık networking serisi)</span></label>
+          <label class="option"><input type="radio" name="s16_etkinlik_tip" value="karma"><span>İkisinin karması</span></label>
+          <label class="option"><input type="radio" name="s16_etkinlik_tip" value="fark_etmez"><span>Fark etmez</span></label>
         </div>
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S18.</span>Aşağıdaki entegrasyonlardan hangileri sizin için olmazsa olmaz?</label>
-        <p class="question-hint">Birden fazla seçenek işaretleyebilirsiniz.</p>
+        <label class="question-label"><span class="question-q">S17.</span>Etkinliklere katılımı artırmak için hangi yöntem sizce daha etkili olur?</label>
         <div class="options">
-          <label class="option"><input type="checkbox" name="s18_entegrasyon" value="sso"><span>SSO (tek noktadan giriş)</span></label>
-          <label class="option"><input type="checkbox" name="s18_entegrasyon" value="hr"><span>HR sistemi (SuccessFactors, Workday vb.) entegrasyonu</span></label>
-          <label class="option"><input type="checkbox" name="s18_entegrasyon" value="email"><span>Kurumsal e-posta domain doğrulaması</span></label>
-          <label class="option"><input type="checkbox" name="s18_entegrasyon" value="ad"><span>Active Directory / LDAP</span></label>
-          <label class="option"><input type="checkbox" name="s18_entegrasyon" value="hicbiri"><span>Hiçbiri kritik değil</span></label>
+          <label class="option"><input type="radio" name="s17_tesvik" value="ucretsiz"><span>Etkinliğin tamamen ücretsiz olması</span></label>
+          <label class="option"><input type="radio" name="s17_tesvik" value="puan"><span>Katılana puan/ödül verilmesi</span></label>
+          <label class="option"><input type="radio" name="s17_tesvik" value="yarisma"><span>Departman bazlı yarışma</span></label>
+          <label class="option"><input type="radio" name="s17_tesvik" value="yonetici"><span>Yöneticinin desteklemesi</span></label>
+          <label class="option"><input type="radio" name="s17_tesvik" value="diger" id="s17_diger_radio"><span>Diğer</span></label>
         </div>
+        <input type="text" name="s17_diger" placeholder="Önerinizi yazın..." style="margin-top:10px; display:none;" id="s17_diger_input">
       </div>
 
       <div class="question">
-        <label class="question-label"><span class="question-q">S19.</span>Aşağıdaki özelliklerin sizin için önemini değerlendirin.</label>
-        <p class="question-hint">1 = Hiç önemli değil, 5 = Çok önemli</p>
-        <div class="likert-table">
-          <table class="likert">
-            <thead>
-              <tr>
-                <th>Özellik</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Şirkete özel kapalı dijital alan</td><td><input type="radio" name="s19_a" value="1"></td><td><input type="radio" name="s19_a" value="2"></td><td><input type="radio" name="s19_a" value="3"></td><td><input type="radio" name="s19_a" value="4"></td><td><input type="radio" name="s19_a" value="5"></td></tr>
-              <tr><td>Sponsorlu etkinlikler (şirket bütçesinden)</td><td><input type="radio" name="s19_b" value="1"></td><td><input type="radio" name="s19_b" value="2"></td><td><input type="radio" name="s19_b" value="3"></td><td><input type="radio" name="s19_b" value="4"></td><td><input type="radio" name="s19_b" value="5"></td></tr>
-              <tr><td>Departman bazlı yetkilendirme</td><td><input type="radio" name="s19_c" value="1"></td><td><input type="radio" name="s19_c" value="2"></td><td><input type="radio" name="s19_c" value="3"></td><td><input type="radio" name="s19_c" value="4"></td><td><input type="radio" name="s19_c" value="5"></td></tr>
-              <tr><td>Detaylı katılım/etkileşim raporları</td><td><input type="radio" name="s19_d" value="1"></td><td><input type="radio" name="s19_d" value="2"></td><td><input type="radio" name="s19_d" value="3"></td><td><input type="radio" name="s19_d" value="4"></td><td><input type="radio" name="s19_d" value="5"></td></tr>
-              <tr><td>Çalışan bağlılığı metrikleri</td><td><input type="radio" name="s19_e" value="1"></td><td><input type="radio" name="s19_e" value="2"></td><td><input type="radio" name="s19_e" value="3"></td><td><input type="radio" name="s19_e" value="4"></td><td><input type="radio" name="s19_e" value="5"></td></tr>
-              <tr><td>Otomatik etkinlik hatırlatmaları</td><td><input type="radio" name="s19_f" value="1"></td><td><input type="radio" name="s19_f" value="2"></td><td><input type="radio" name="s19_f" value="3"></td><td><input type="radio" name="s19_f" value="4"></td><td><input type="radio" name="s19_f" value="5"></td></tr>
-              <tr><td>Sürücü-yolcu eşleştirme</td><td><input type="radio" name="s19_g" value="1"></td><td><input type="radio" name="s19_g" value="2"></td><td><input type="radio" name="s19_g" value="3"></td><td><input type="radio" name="s19_g" value="4"></td><td><input type="radio" name="s19_g" value="5"></td></tr>
-              <tr><td>Çalışanlara puan/teşvik dağıtma yetkisi (İK'nın)</td><td><input type="radio" name="s19_h" value="1"></td><td><input type="radio" name="s19_h" value="2"></td><td><input type="radio" name="s19_h" value="3"></td><td><input type="radio" name="s19_h" value="4"></td><td><input type="radio" name="s19_h" value="5"></td></tr>
-              <tr><td>Çok lokasyonlu yapı</td><td><input type="radio" name="s19_i" value="1"></td><td><input type="radio" name="s19_i" value="2"></td><td><input type="radio" name="s19_i" value="3"></td><td><input type="radio" name="s19_i" value="4"></td><td><input type="radio" name="s19_i" value="5"></td></tr>
-              <tr><td>Açık ağ etkinliklerine erişim (şehir içi etkinlikler)</td><td><input type="radio" name="s19_j" value="1"></td><td><input type="radio" name="s19_j" value="2"></td><td><input type="radio" name="s19_j" value="3"></td><td><input type="radio" name="s19_j" value="4"></td><td><input type="radio" name="s19_j" value="5"></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S20.</span>Etkinlikleri çalışanlara nasıl sunmayı tercih edersiniz?</label>
+        <label class="question-label"><span class="question-q">S18.</span>Bir pilot projesi için 15–20 kişi ile 2 hafta süren bir teste katılır mısınız?<span class="optional-tag">İsteğe Bağlı</span></label>
         <div class="options">
-          <label class="option"><input type="radio" name="s20_etkinlik_tip" value="tek"><span>Tek seferlik etkinlikler (kahvaltı, parti vb.)</span></label>
-          <label class="option"><input type="radio" name="s20_etkinlik_tip" value="zincir"><span>Seri/zincir etkinlikler (örn. 4 haftalık networking serisi, eğitim programı)</span></label>
-          <label class="option"><input type="radio" name="s20_etkinlik_tip" value="karma"><span>İkisinin karması</span></label>
-          <label class="option"><input type="radio" name="s20_etkinlik_tip" value="fark_etmez"><span>Fark etmez</span></label>
+          <label class="option"><input type="radio" name="s18_pilot" value="kesinlikle"><span>Kesinlikle katılırız</span></label>
+          <label class="option"><input type="radio" name="s18_pilot" value="olusturur"><span>Uygun koşullarda katılabiliriz</span></label>
+          <label class="option"><input type="radio" name="s18_pilot" value="cekiniz"><span>Çekincelerimiz olur</span></label>
+          <label class="option"><input type="radio" name="s18_pilot" value="katilmaz"><span>Katılmayız</span></label>
         </div>
       </div>
 
-      <div class="question">
-        <label class="question-label"><span class="question-q">S21.</span>Etkinliklere katılımı artırmak için hangi yöntem sizce daha etkili olur?</label>
-        <div class="options">
-          <label class="option"><input type="radio" name="s21_tesvik" value="ucretsiz"><span>Etkinliğin tamamen ücretsiz olması</span></label>
-          <label class="option"><input type="radio" name="s21_tesvik" value="puan"><span>Katılana puan/ödül verilmesi</span></label>
-          <label class="option"><input type="radio" name="s21_tesvik" value="yarisma"><span>Departman bazlı yarışma (en yüksek katılım gösteren ödül kazanır)</span></label>
-          <label class="option"><input type="radio" name="s21_tesvik" value="yonetici"><span>Yöneticinin desteklemesi</span></label>
-          <label class="option"><input type="radio" name="s21_tesvik" value="diger" id="s21_diger_radio"><span>Diğer</span></label>
-        </div>
-        <input type="text" name="s21_diger" placeholder="Önerinizi yazın..." style="margin-top:10px; display:none;" id="s21_diger_input">
-      </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- BÖLÜM 6 — PİLOT VE FİYAT NİYETİ -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section>
-      <div class="section-header">
-        <span class="section-number">06 / 07</span>
-        <h2 class="section-title">Pilot ve fiyat niyeti</h2>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S22.</span>Çalışan başına aylık 50–150 TL aralığında, az önce bahsedilen özelliklere sahip bir platform için bütçe ayırmaya ne kadar açıksınız?</label>
-        <p class="question-hint">1 = Kesinlikle değerlendirmem, 5 = Kesinlikle değerlendiririm</p>
-        <div class="likert-table">
-          <table class="likert">
-            <tbody>
-              <tr>
-                <td>Değerlendirme isteğiniz</td>
-                <td><input type="radio" name="s22_butce_niyet" value="1"> 1</td>
-                <td><input type="radio" name="s22_butce_niyet" value="2"> 2</td>
-                <td><input type="radio" name="s22_butce_niyet" value="3"> 3</td>
-                <td><input type="radio" name="s22_butce_niyet" value="4"> 4</td>
-                <td><input type="radio" name="s22_butce_niyet" value="5"> 5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S23.</span>Şirketinizde 50–100 kişilik, 2–3 aylık ücretsiz bir pilot çalışma yapılsa katılım onayı vermeye nasıl yaklaşırsınız?</label>
-        <div class="options">
-          <label class="option"><input type="radio" name="s23_pilot" value="hayir"><span>Hayır, prensip olarak pilot çalışmalara katılmıyoruz</span></label>
-          <label class="option"><input type="radio" name="s23_pilot" value="muhtemelen_hayir"><span>Süreç çok uzun, muhtemelen hayır</span></label>
-          <label class="option"><input type="radio" name="s23_pilot" value="kosullu"><span>Doğru koşullarda değerlendirebilirim</span></label>
-          <label class="option"><input type="radio" name="s23_pilot" value="evet"><span>Evet, ilgilenirim</span></label>
-          <label class="option"><input type="radio" name="s23_pilot" value="aktif_ariyorum"><span>Evet, şu an aktif olarak böyle bir çözüm arıyoruz</span></label>
-        </div>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S24.</span>Pilot için ön koşullarınız neler olur?<span class="optional-tag">opsiyonel</span></label>
-        <p class="question-hint">Birden fazla seçenek işaretleyebilirsiniz.</p>
-        <div class="options">
-          <label class="option"><input type="checkbox" name="s24_kosul" value="gizlilik"><span>Veri gizliliği sözleşmesi</span></label>
-          <label class="option"><input type="checkbox" name="s24_kosul" value="sinirli"><span>Sınırlı kullanıcı grubuyla başlama</span></label>
-          <label class="option"><input type="checkbox" name="s24_kosul" value="kpi"><span>Belirli KPI'larla ölçülebilir olma</span></label>
-          <label class="option"><input type="checkbox" name="s24_kosul" value="yonetim"><span>Üst yönetim onayı</span></label>
-          <label class="option"><input type="checkbox" name="s24_kosul" value="zorunsuz"><span>Pilot sonrası satınalma zorunluluğu olmaması</span></label>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- BÖLÜM 7 — AÇIK UÇLU -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section>
-      <div class="section-header">
-        <span class="section-number">07 / 07</span>
-        <h2 class="section-title">Açık uçlu</h2>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S25.</span>Böyle bir platformu <em>kullanmamak</em> için aklınıza gelen en büyük endişeniz nedir?</label>
-        <textarea name="s25_endise" placeholder="Açıkça yazabilirsiniz, en faydalı veri burada saklı..."></textarea>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S26.</span>Çalışan deneyimi alanında çözülmemiş bulduğunuz en büyük problem nedir?<span class="optional-tag">opsiyonel</span></label>
-        <textarea name="s26_problem" placeholder="Aklınızdaki probleme dair gözleminizi yazabilirsiniz..."></textarea>
-      </div>
-
-      <div class="question">
-        <label class="question-label"><span class="question-q">S27.</span>Eklemek istediğiniz başka bir not var mı?<span class="optional-tag">opsiyonel</span></label>
-        <textarea name="s27_not" placeholder="Aklınıza gelen her şey..."></textarea>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- KONSEPT TANITIMI -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <div class="concept-reveal">
-      <h2>Az önce sorduğumuz sorularla aslında şunlara çözüm üreten bir platformdan bahsediyorduk:</h2>
-      <ul class="concept-list">
-        <li>Çalışanların etkinliklere katılımının ölçülememesi</li>
-        <li>Hibrit çalışanların sosyal izolasyonu</li>
-        <li>Şirket içi ulaşım ve otopark yetersizliği</li>
-        <li>Departmanlar arası kopukluk</li>
-        <li>İK'nın kültür yatırımlarının veriye dayalı raporlanamaması</li>
-        <li>Çalışanların yan haklardan haberdar olmaması</li>
-        <li>Çalışanların işe geliş süresinin verimsiz geçmesi</li>
-      </ul>
-      <p>Platformun nasıl çalıştığını merak ediyorsanız aşağıdaki kısa tanıtım videomuza göz atabilirsiniz:</p>
-      <a href="#" class="video-link" id="videoLink">Tanıtım videosunu izle</a>
-    </div>
-
+    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- SUBMIT ─── -->
+    <!-- ══════════════════════════════════════════════════════════════[...]
     <div class="submit-section">
       <button type="submit">Anketi Gönder</button>
-      <p class="submit-note">Yanıtlarınız anonim olarak değerlendirilecektir.</p>
+      <p class="submit-note">Verileriniz anonim olarak işlenecektir ve sadece araştırma amacıyla kullanılacaktır.</p>
     </div>
-
   </form>
 
-  <div class="success-state" id="successState">
-    <h2>Teşekkür ederiz.</h2>
-    <p>Yanıtlarınız bize ulaştı. Çalışan deneyimi alanında daha iyi bir çözüm geliştirebilmemiz için verdiğiniz değerli bilgi için minnettarız.</p>
+  <div class="success-state">
+    <h2>Çok Teşekkürler</h2>
+    <p>Katılımınız için müteşekkir olup, geri bildiriminiz bize çok değerli. Yakında bu verileri analiz edip sizlerle paylaşacağız.</p>
   </div>
 
-  <div class="ornament">· · ·</div>
+  <p class="ornament">✦</p>
 
 </div>
 
 <script>
-  // Seçili görsel feedback
-  document.querySelectorAll('.option input').forEach(input => {
-    input.addEventListener('change', function() {
-      const parent = this.closest('.option');
-      const name = this.name;
-      if (this.type === 'radio') {
-        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-          r.closest('.option')?.classList.remove('selected');
-        });
-        parent.classList.add('selected');
-      } else if (this.type === 'checkbox') {
-        if (this.checked) parent.classList.add('selected');
-        else parent.classList.remove('selected');
+  // Progress bar
+  function updateProgressBar() {
+    const form = document.getElementById('surveyForm');
+    const inputs = form.querySelectorAll('input[type="radio"], input[type="checkbox"], textarea');
+    let filled = 0;
+    inputs.forEach(input => {
+      if (input.type === 'textarea') {
+        if (input.value.trim().length > 0) filled++;
+      } else if (input.checked) {
+        filled++;
       }
     });
+    const progress = (filled / inputs.length) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  }
+
+  document.getElementById('surveyForm').addEventListener('change', updateProgressBar);
+  document.getElementById('surveyForm').addEventListener('input', updateProgressBar);
+
+  // S1 "Diğer" input visibility
+  document.getElementById('s1_diger_radio').addEventListener('change', function() {
+    document.getElementById('s1_diger_input').style.display = this.checked ? 'block' : 'none';
   });
 
-  // "Diğer" alanlarını göster/gizle
-  const otherToggle = (radioId, inputId) => {
-    const radios = document.querySelectorAll(`input[name="${document.getElementById(radioId).name}"]`);
-    const input = document.getElementById(inputId);
-    radios.forEach(r => {
-      r.addEventListener('change', () => {
-        input.style.display = (r.checked && r.id === radioId) ? 'block' : 'none';
-        if (r.checked && r.id !== radioId) input.value = '';
-      });
-    });
-  };
-  otherToggle('s1_diger_radio', 's1_diger_input');
-  otherToggle('s21_diger_radio', 's21_diger_input');
-
-  // Scroll progress
-  window.addEventListener('scroll', () => {
-    const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-    document.getElementById('progressBar').style.width = scrolled + '%';
+  // S17 "Diğer" input visibility
+  document.getElementById('s17_diger_radio').addEventListener('change', function() {
+    document.getElementById('s17_diger_input').style.display = this.checked ? 'block' : 'none';
   });
 
-  document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+  // Form submission
+  document.getElementById('surveyForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const btn = this.querySelector('button[type="submit"]');
-    btn.textContent = 'Gönderiliyor…';
-    btn.disabled = true;
-
-    try {
-      const response = await fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        this.classList.add('hidden');
-        document.getElementById('successState').classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const json = await response.json().catch(() => ({}));
-        alert(json.errors?.[0]?.message || 'Bir hata oluştu, lütfen tekrar deneyin.');
-        btn.textContent = 'Anketi Gönder';
-        btn.disabled = false;
+    
+    const form = this;
+    const formData = new FormData(form);
+    
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
       }
-    } catch {
-      alert('Bağlantı hatası, lütfen internet bağlantınızı kontrol edin.');
-      btn.textContent = 'Anketi Gönder';
-      btn.disabled = false;
-    }
+    }).then(response => {
+      if (response.ok) {
+        form.classList.add('hidden');
+        document.querySelector('.success-state').classList.add('active');
+      }
+    }).catch(error => console.error('Error:', error));
   });
 </script>
 
