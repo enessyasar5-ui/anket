@@ -406,97 +406,6 @@
     line-height: 1.6;
   }
 
-  /* ─── CONCEPT REVEAL ─── */
-  .concept-reveal {
-    margin-top: 56px;
-    padding: 40px;
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .concept-reveal::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(197, 83, 46, 0.3) 0%, transparent 70%);
-    transform: translate(50%, -50%);
-  }
-
-  .concept-reveal h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    position: relative;
-  }
-
-  .concept-reveal p {
-    color: rgba(245, 241, 234, 0.8);
-    margin-bottom: 16px;
-    position: relative;
-    font-size: 15px;
-  }
-
-  .concept-list {
-    list-style: none;
-    margin: 20px 0;
-    position: relative;
-  }
-
-  .concept-list li {
-    padding: 10px 0 10px 28px;
-    position: relative;
-    color: rgba(245, 241, 234, 0.9);
-    border-bottom: 1px solid rgba(245, 241, 234, 0.1);
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .concept-list li:last-child { border-bottom: none; }
-
-  .concept-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .video-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 20px;
-    padding: 14px 24px;
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    border-radius: 2px;
-    transition: background 0.15s ease;
-    position: relative;
-  }
-
-  .video-link:hover {
-    background: #A8421F;
-  }
-
-  .video-link::after {
-    content: '↗';
-    font-size: 18px;
-  }
-
   /* ─── SUBMIT ─── */
   .submit-section {
     margin-top: 56px;
@@ -575,7 +484,6 @@
   @media (max-width: 640px) {
     .container { padding: 40px 20px 80px; }
     .question { padding: 20px; }
-    .concept-reveal { padding: 28px; }
     h1 { font-size: 32px; }
     .section-title { font-size: 20px; }
     .meta { gap: 20px; font-size: 12px; }
@@ -641,9 +549,9 @@
     <input type="hidden" name="_subject" value="İK Anketi — Yeni Yanıt">
     <p style="display:none;"><label>Boş bırakın: <input name="_gotcha"></label></p>
 
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <!-- BÖLÜM 1 — PROFİL -->
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <section>
       <div class="section-header">
         <span class="section-number">01 / 04</span>
@@ -687,9 +595,9 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <!-- BÖLÜM 2 — MEVCUT DURUM -->
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <section>
       <div class="section-header">
         <span class="section-number">02 / 04</span>
@@ -780,9 +688,9 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <!-- BÖLÜM 3 — PROBLEMLER -->
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <section>
       <div class="section-header">
         <span class="section-number">03 / 04</span>
@@ -837,9 +745,9 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <!-- BÖLÜM 4 — KONSEPT TERCİHLERİ -->
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <section>
       <div class="section-header">
         <span class="section-number">04 / 04</span>
@@ -940,9 +848,9 @@
 
     </section>
 
-    <!-- ══════════════════════════════════════════════════════════════[...]
-    <!-- SUBMIT ─── -->
-    <!-- ══════════════════════════════════════════════════════════════[...]
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- SUBMIT SECTION -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
     <div class="submit-section">
       <button type="submit">Anketi Gönder</button>
       <p class="submit-note">Verileriniz anonim olarak işlenecektir ve sadece araştırma amacıyla kullanılacaktır.</p>
