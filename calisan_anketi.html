@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Çalışan Araştırması — Ulaşım & Sosyal Deneyim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,1,400;9..144,1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B2D;--ink-mid:#2A3A52;
+  --paper:#F5F1EA;--paper-soft:#EBE5DA;
+  --accent:#C5532E;--accent-dim:rgba(197,83,46,.1);
+  --muted:#6B7A93;--line:rgba(15,27,45,.11);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Manrope',sans-serif;background:var(--paper);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse at 10% 0%,rgba(197,83,46,.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 100%,rgba(15,27,45,.04) 0%,transparent 50%);
+  min-height:100vh;
+}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--paper-soft);z-index:100;}
+.progress-fill{height:100%;background:var(--accent);width:0%;transition:width .3s;}
+.wrap{max-width:740px;margin:0 auto;padding:60px 28px 100px;}
+
+/* HEADER */
+header{padding-bottom:44px;margin-bottom:48px;border-bottom:1.5px solid var(--ink);}
+.tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:24px;}
+.tag::before{content:'';width:20px;height:1.5px;background:var(--accent);}
+h1{font-family:'Fraunces',serif;font-size:clamp(30px,5vw,52px);line-height:1.06;font-weight:500;letter-spacing:-.025em;margin-bottom:16px;}
+h1 em{font-style:italic;color:var(--accent);}
+.lead{font-size:15px;color:var(--ink-mid);max-width:560px;line-height:1.7;}
+.meta{display:flex;flex-wrap:wrap;gap:20px;margin-top:22px;font-size:12px;color:var(--muted);}
+.meta span{display:flex;align-items:center;gap:6px;}
+.meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+/* BLOCK LABEL */
+.block-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;margin-bottom:20px;
+  padding:6px 14px;background:var(--paper-soft);border-radius:2px;
+}
+
+/* QUESTION */
+.q{background:rgba(255,255,255,.45);border:1px solid var(--line);border-radius:3px;padding:24px;margin-bottom:16px;transition:border-color .2s,background .2s;}
+.q:hover{border-color:rgba(15,27,45,.2);background:rgba(255,255,255,.62);}
+.q-label{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px;line-height:1.5;}
+.q-num{font-family:'Fraunces',serif;font-style:italic;color:var(--accent);margin-right:5px;}
+.q-hint{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.opt-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper-soft);padding:2px 7px;border-radius:2px;margin-left:8px;font-weight:600;vertical-align:middle;}
+
+/* OPTIONS */
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;cursor:pointer;font-size:14px;color:var(--ink-mid);transition:all .15s;line-height:1.45;}
+.opt:hover{border-color:var(--accent);background:var(--accent-dim);color:var(--ink);}
+.opt.sel{border-color:var(--accent);background:var(--accent-dim);color:var(--ink);}
+.opt input[type=radio],.opt input[type=checkbox]{appearance:none;-webkit-appearance:none;width:17px;height:17px;flex-shrink:0;margin-top:2px;border:1.5px solid var(--muted);background:white;cursor:pointer;position:relative;transition:all .15s;}
+.opt input[type=radio]{border-radius:50%;}
+.opt input[type=checkbox]{border-radius:2px;}
+.opt input[type=radio]:checked,.opt input[type=checkbox]:checked{border-color:var(--accent);background:var(--accent);}
+.opt input[type=radio]:checked::after{content:'';position:absolute;top:50%;left:50%;width:6px;height:6px;background:white;border-radius:50%;transform:translate(-50%,-50%);}
+.opt input[type=checkbox]:checked::after{content:'';position:absolute;top:1px;left:4px;width:5px;height:9px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg);}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--line);margin:32px 0;}
+
+/* KAPANIŞ */
+.closing{margin-top:52px;padding:40px;background:var(--ink);color:var(--paper);border-radius:3px;position:relative;overflow:hidden;}
+.closing::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(197,83,46,.38) 0%,transparent 70%);}
+.closing-thanks{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:rgba(245,241,234,.6);margin-bottom:18px;position:relative;}
+.closing h2{font-family:'Fraunces',serif;font-size:21px;font-weight:500;line-height:1.3;letter-spacing:-.01em;margin-bottom:16px;position:relative;color:var(--paper);}
+.closing-desc{font-size:14px;color:rgba(245,241,234,.78);line-height:1.7;margin-bottom:20px;position:relative;}
+.closing-items{list-style:none;position:relative;margin-bottom:24px;}
+.closing-items li{padding:10px 0 10px 26px;position:relative;color:rgba(245,241,234,.88);font-size:13.5px;border-bottom:1px solid rgba(245,241,234,.1);line-height:1.55;}
+.closing-items li:last-child{border-bottom:none;}
+.closing-items li::before{content:'→';position:absolute;left:0;top:10px;color:var(--accent);font-weight:700;}
+.closing-items li strong{color:var(--paper);font-weight:700;}
+.vid-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:var(--accent);color:white;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.03em;border-radius:3px;transition:background .15s;position:relative;}
+.vid-btn:hover{background:#a8421f;}
+.vid-btn::after{content:'↗';font-size:15px;}
+
+/* SUBMIT */
+.submit-area{margin-top:48px;padding-top:32px;border-top:1.5px solid var(--ink);text-align:center;}
+button[type=submit]{background:var(--ink);color:var(--paper);border:none;padding:18px 44px;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all .2s;}
+button[type=submit]:hover{background:var(--accent);transform:translateY(-1px);box-shadow:0 8px 24px rgba(197,83,46,.28);}
+.submit-note{margin-top:12px;font-size:11px;color:var(--muted);font-style:italic;font-family:'Fraunces',serif;}
+
+/* HIDDEN BLOCKS */
+.block{display:none;}
+.block.active{display:block;}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:80px 20px;}
+.success.on{display:block;}
+.success h2{font-family:'Fraunces',serif;font-size:36px;font-weight:500;margin-bottom:12px;}
+.success p{color:var(--ink-mid);max-width:400px;margin:0 auto;font-size:15px;}
+form.gone{display:none;}
+.ornament{text-align:center;margin:72px 0 14px;font-family:'Fraunces',serif;color:var(--muted);letter-spacing:.8em;font-size:13px;}
+
+@media(max-width:580px){
+  .wrap{padding:36px 16px 72px;}
+  .q{padding:18px;}
+  .closing{padding:26px;}
+  h1{font-size:27px;}
+}
+</style>
+</head>
+<body>
+<div class="progress"><div class="progress-fill" id="pbar"></div></div>
+<div class="wrap">
+
+<header>
+  <div class="tag">Çalışan Araştırması · 2026</div>
+  <h1>İşe gidiş gelişiniz ve <em>sosyal hayatınız</em> hakkında birkaç soru.</h1>
+  <p class="lead">Yanıtlarınız tamamen anonimdir. Amacımız çalışanların günlük deneyimini daha iyi anlamak; ürün tanıtmak değil.</p>
+  <div class="meta">
+    <span>Tahmini süre: 4–6 dk</span>
+    <span>Anonim yanıt</span>
+    <span>Size özel sorular</span>
+  </div>
+</header>
+
+<form id="form" method="POST">
+
+<!-- ══════════════════════════════════════════
+     FİLTRE SORUSU
+══════════════════════════════════════════ -->
+<div class="q" id="filtre-q">
+  <div class="q-label"><span class="q-num">S1.</span>İşe genellikle nasıl geliyorsunuz?</div>
+  <div class="opts" id="filtre-opts">
+    <label class="opt"><input type="radio" name="filtre" value="ozel_kendi" id="f1"><span>Kendi özel aracımla — yakıt ve otopark masrafları bana ait</span></label>
+    <label class="opt"><input type="radio" name="filtre" value="ozel_sirket" id="f2"><span>Özel araçla — ama masrafları şirket karşılıyor</span></label>
+    <label class="opt"><input type="radio" name="filtre" value="toplu" id="f3"><span>Toplu taşıma, metro, otobüs veya şirket servisiyle</span></label>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DAL A — KENDİ MASRAFIYLA ÖZEL ARAÇ
+══════════════════════════════════════════ -->
+<div class="block" id="block-a">
+  <div class="block-label">🚗 Özel araç kullananlar</div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S2.</span>İşe gidip gelirken yakıt ve otopark için aylık ortalama ne kadar harcıyorsunuz?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="a_maliyet" value="500"><span>500 TL'den az</span></label>
+      <label class="opt"><input type="radio" name="a_maliyet" value="500_1500"><span>500 – 1.500 TL</span></label>
+      <label class="opt"><input type="radio" name="a_maliyet" value="1500_3000"><span>1.500 – 3.000 TL</span></label>
+      <label class="opt"><input type="radio" name="a_maliyet" value="3000"><span>3.000 TL'nin üzerinde</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S3.</span>Sabah trafiğinde geçirdiğiniz süreyi düşünün. O süre sizin için genellikle nasıl geçiyor?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="a_stres" value="yalniz_iyi"><span>Kendi halimde, müzik veya podcast eşliğinde güzel geçiyor.</span></label>
+      <label class="opt"><input type="radio" name="a_stres" value="biri_iyi"><span>Fena değil ama yanımda biri olsa daha keyifli olurdu.</span></label>
+      <label class="opt"><input type="radio" name="a_stres" value="biri_cok_iyi"><span>Yanımda biri olsa çok daha iyi geçerdi, o süreyi değerlendirmiş olurdum.</span></label>
+      <label class="opt"><input type="radio" name="a_stres" value="trafik_sohbet"><span>Trafik zaten kaçınılmaz, en azından iyi bir sohbetle geçse fena olmaz.</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S4.</span>Rotanızdan sapmadan, yol üstünde birine yer açsaydınız ve karşılığında aşağıdakilerden birini kazansaydınız — hangisi sizi en çok memnun ederdi?</div>
+    <div class="q-hint">Tek bir seçenek işaretleyin.</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="a_tesvik" value="yakit"><span>O günkü işe gidiş-dönüş yakıt masrafınızın tamamen karşılanması</span></label>
+      <label class="opt"><input type="radio" name="a_tesvik" value="otopark"><span>O gün için ücretsiz otopark</span></label>
+      <label class="opt"><input type="radio" name="a_tesvik" value="yikama"><span>O haftaki araç yıkama masrafınızın karşılanması</span></label>
+      <label class="opt"><input type="radio" name="a_tesvik" value="yemek"><span>O gün için ücretsiz öğle yemeği</span></label>
+      <label class="opt"><input type="radio" name="a_tesvik" value="kahve"><span>O gün için ücretsiz kahve</span></label>
+      <label class="opt"><input type="radio" name="a_tesvik" value="etkinlik"><span>Katılabileceğiniz ücretsiz bir sosyal etkinlik daveti (spor, tenis, networking vb.)</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S5.</span>Aynı güzergahta, kurumsal kimliği doğrulanmış biri olduğunu bilseniz — onu aracınıza almaktan çekinir miydiniz?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="a_guven" value="rahat"><span>Hayır, rahatlıkla alırdım.</span></label>
+      <label class="opt"><input type="radio" name="a_guven" value="profil"><span>Profili ve çalıştığı şirket görünür olsa alırdım.</span></label>
+      <label class="opt"><input type="radio" name="a_guven" value="ayni_sirket"><span>Yalnızca kendi şirketimden biri olsaydı alırdım.</span></label>
+      <label class="opt"><input type="radio" name="a_guven" value="hayir"><span>Araçıma yabancı almayı tercih etmem, teşvik ne olursa olsun.</span></label>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DAL B — ŞİRKET MASRAFLI ÖZEL ARAÇ
+══════════════════════════════════════════ -->
+<div class="block" id="block-b">
+  <div class="block-label">🚙 Şirket aracı kullananlar</div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S2.</span>Sabah trafiğinde geçirdiğiniz süreyi düşünün. O süre sizin için genellikle nasıl geçiyor?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="b_yorum" value="yalniz_iyi"><span>Kendi halimde, müzik veya podcast eşliğinde güzel geçiyor.</span></label>
+      <label class="opt"><input type="radio" name="b_yorum" value="biri_iyi"><span>Fena değil ama yanımda biri olsa daha keyifli olurdu.</span></label>
+      <label class="opt"><input type="radio" name="b_yorum" value="biri_cok_iyi"><span>Yanımda biri olsa çok daha iyi geçerdi, o süreyi değerlendirmiş olurdum.</span></label>
+      <label class="opt"><input type="radio" name="b_yorum" value="trafik_sohbet"><span>Trafik zaten kaçınılmaz, en azından iyi bir sohbetle geçse fena olmaz.</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S3.</span>Rotanızdan sapmadan, yol üstünde boş koltuğunuza biri binse ve karşılığında aşağıdakilerden birini kazansaydınız — hangisi sizi gerçekten harekete geçirirdi?</div>
+    <div class="q-hint">Tek bir seçenek işaretleyin.</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="b_tesvik" value="nakit"><span>Aylık ek nakit prim</span></label>
+      <label class="opt"><input type="radio" name="b_tesvik" value="otopark"><span>Rezerve / öncelikli otopark yeri</span></label>
+      <label class="opt"><input type="radio" name="b_tesvik" value="yikama"><span>O haftaki araç yıkama masrafının karşılanması</span></label>
+      <label class="opt"><input type="radio" name="b_tesvik" value="yemek"><span>O gün için ücretsiz öğle yemeği</span></label>
+      <label class="opt"><input type="radio" name="b_tesvik" value="kahve"><span>O gün için ücretsiz kahve</span></label>
+      <label class="opt"><input type="radio" name="b_tesvik" value="etkinlik"><span>Katılabileceğiniz ücretsiz bir sosyal etkinlik daveti (spor, tenis, networking vb.)</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S4.</span>Hiçbir teşvik olmasa bile, kurumsal olarak doğrulanmış biri olduğunu bilseniz — onu aracınıza almayı düşünür müydünüz?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="b_guven" value="evet"><span>Evet, networking ve sosyalleşme açısından güzel bir fırsat olurdu.</span></label>
+      <label class="opt"><input type="radio" name="b_guven" value="tesvik_ile"><span>Tek başına yetmez ama teşvikle birlikte düşünürdüm.</span></label>
+      <label class="opt"><input type="radio" name="b_guven" value="hayir"><span>Hayır, araçımda yolcu tercih etmem.</span></label>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DAL C — TOPLU TAŞIMA / SERVİS
+══════════════════════════════════════════ -->
+<div class="block" id="block-c">
+  <div class="block-label">🚇 Toplu taşıma veya servis kullananlar</div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S2.</span>Şu anki ulaşım şeklinizle ilgili sizi en çok zorlayan nedir?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="c_sorun" value="esnek"><span>Saatlere bağımlı olmak — geç kalmak ya da erken çıkmak zorunda kalmak</span></label>
+      <label class="opt"><input type="radio" name="c_sorun" value="konfor"><span>Kalabalık, aktarma ve durak beklemesi</span></label>
+      <label class="opt"><input type="radio" name="c_sorun" value="sure"><span>Kapıdan kapıya sürenin çok uzun olması</span></label>
+      <label class="opt"><input type="radio" name="c_sorun" value="sorun_yok"><span>Pek zorlanmıyorum, mevcut düzenim yeterli.</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S3.</span>Aynı yöne giden, kurumsal kimliği doğrulanmış bir profesyonelin özel aracında küçük bir katkı payıyla konforlu ve direkt seyahat etme seçeneği olsa — cazip gelir miydi?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="c_yolcu" value="evet"><span>Evet, kesinlikle denerdi.</span></label>
+      <label class="opt"><input type="radio" name="c_yolcu" value="fiyata_gore"><span>Fiyata ve kişiye bağlı, değerlendirirdim.</span></label>
+      <label class="opt"><input type="radio" name="c_yolcu" value="hayir"><span>Hayır, mevcut ulaşım şeklimle devam ederim.</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">S4.</span>Böyle bir seçenek için günlük ne kadar katkı payı makul gelirdi?</div>
+    <div class="q-hint">Şu an toplu taşımaya harcadığınızı düşünerek yanıtlayın.</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="c_fiyat" value="20"><span>Günlük 20 TL ve altı</span></label>
+      <label class="opt"><input type="radio" name="c_fiyat" value="20_50"><span>Günlük 20 – 50 TL</span></label>
+      <label class="opt"><input type="radio" name="c_fiyat" value="50_100"><span>Günlük 50 – 100 TL</span></label>
+      <label class="opt"><input type="radio" name="c_fiyat" value="100"><span>100 TL'nin üzerinde de olabilir, konfora değer.</span></label>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ORTAK KAPANIŞ BLOĞU — TÜM ÇALIŞANLAR
+══════════════════════════════════════════ -->
+<div class="block" id="block-ortak">
+  <div class="block-label">👥 Tüm çalışanlar için</div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">O1.</span>İş çıkışı arkadaşlarınızla yemek, eğlence veya spor gibi bir etkinlik planladığınızda — mekan bulmak, rezervasyon ve hesap bölüşmek ne kadar kolay gidiyor?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="o_etkinlik" value="kolay"><span>Genellikle akıcı gidiyor, büyük bir zorluk yaşamıyoruz.</span></label>
+      <label class="opt"><input type="radio" name="o_etkinlik" value="orta"><span>Mekan bulmak veya herkesi bir araya getirmek bazen uzun sürebiliyor.</span></label>
+      <label class="opt"><input type="radio" name="o_etkinlik" value="zor"><span>Oldukça yorucu — koordinasyon ve ödeme kısmı çoğu zaman etkinliği yarıda bıraktırıyor.</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">O2.</span>Başka departmanlardaki iş arkadaşlarınızla veya yakın lokasyondaki diğer şirket çalışanlarıyla ortak ilgi alanlarına göre etkinliklere (tenis, eğitim, kahve, spor) katılma fikri nasıl geliyor?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="o_sosyal" value="evet"><span>Çekici geliyor, yeni insanlarla tanışmak ve ağımı genişletmek isterim.</span></label>
+      <label class="opt"><input type="radio" name="o_sosyal" value="belki"><span>Etkinliğe ve kişilere göre değerlendiririm.</span></label>
+      <label class="opt"><input type="radio" name="o_sosyal" value="hayir"><span>Hayır, iş çıkışı aktivitelerimi genellikle yakın çevremle planlıyorum.</span></label>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-label"><span class="q-num">O3.</span>Hem işe gidiş gelişinizdeki ulaşım yükünü hafifleten hem de iş çıkışı etkinlik planlamasını kolaylaştıran bir uygulama olsa — nasıl kullanırdınız?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="o_niyet" value="aktif"><span>Her iki özelliği de aktif olarak kullanırdım.</span></label>
+      <label class="opt"><input type="radio" name="o_niyet" value="ulasim"><span>Ulaşım kısmını kullanırdım, etkinlik kısmı ikincil kalırdı.</span></label>
+      <label class="opt"><input type="radio" name="o_niyet" value="etkinlik"><span>Etkinlik kısmını kullanırdım, ulaşım kısmına ihtiyaç duymam.</span></label>
+      <label class="opt"><input type="radio" name="o_niyet" value="dusuk"><span>Muhtemelen pek kullanmazdım.</span></label>
+    </div>
+  </div>
+
+</div><!-- /block-ortak -->
+
+<!-- KAPANIŞ KARTI -->
+<div class="closing" id="kapaniskarti" style="display:none;">
+  <p class="closing-thanks">Zaman ayırdığınız için teşekkür ederiz.</p>
+  <h2>Verdiğiniz yanıtlar, çalışanların işe geliş stresini ve iş çıkışı koordinasyon yükünü ortadan kaldırmak için kurduğumuz platformun saha doğrulamasında kullanılacaktır.</h2>
+  <p class="closing-desc">Az önce konuştuğumuz sorunları şu şekilde çözüyoruz:</p>
+  <ul class="closing-items">
+    <li><strong>Boş Koltuk, Dolu Cüzdan:</strong> Zaten işe giden kendi aracını kullanan çalışanları, aynı güzergahtaki kurumsal olarak doğrulanmış personelle eşleştirerek boş koltuk maliyetlerini değere dönüştürüyor, otopark kapasite krizini ve işe geliş stresini sıfırlıyoruz.</li>
+    <li><strong>Sıfır Koordinasyon Yükü:</strong> Mekan araştırma, rezervasyon ve hesap bölüşme süreçlerini tek tıkla çalışan bir etkinlik pazar yeri otomasyonuna devrediyoruz.</li>
+    <li><strong>Gerçek Bağlantılar:</strong> Ortak ilgi alanlarına göre kurumsal olarak doğrulanmış kişilerle tanışma ve etkinliklere katılma imkanı sunuyoruz.</li>
+  </ul>
+  <p class="closing-desc" style="margin-bottom:18px;">Nasıl çalıştığını merak ediyorsanız kısa tanıtım videomuza göz atabilirsiniz:</p>
+  <a href="#" class="vid-btn">Tanıtım videosunu izle</a>
+</div>
+
+<div class="submit-area" id="submit-area" style="display:none;">
+  <button type="submit">Anketi Gönder</button>
+  <p class="submit-note">Yanıtlarınız anonim olarak değerlendirilecektir.</p>
+</div>
+
+</form>
+
+<div class="success" id="succ">
+  <h2>Teşekkür ederiz.</h2>
+  <p>Yanıtlarınız bize ulaştı. Günlük deneyiminizi daha iyi anlamak için ayırdığınız vakit için minnettarız.</p>
+</div>
+
+<div class="ornament">· · ·</div>
+</div>
+
+<script>
+// Seçim görsel feedback
+document.querySelectorAll('.opt input').forEach(inp=>{
+  inp.addEventListener('change',function(){
+    if(this.type==='radio'){
+      document.querySelectorAll(`input[name="${this.name}"]`).forEach(r=>r.closest('.opt')?.classList.remove('sel'));
+      this.closest('.opt').classList.add('sel');
+    } else {
+      this.closest('.opt').classList.toggle('sel',this.checked);
+    }
+  });
+});
+
+// Dallanma mantığı
+const filtreler = document.querySelectorAll('input[name="filtre"]');
+filtreler.forEach(f=>{
+  f.addEventListener('change', function(){
+    // Tüm blokları kapat
+    document.querySelectorAll('.block').forEach(b=>b.classList.remove('active'));
+
+    // İlgili dalı aç
+    if(this.value==='ozel_kendi') document.getElementById('block-a').classList.add('active');
+    if(this.value==='ozel_sirket') document.getElementById('block-b').classList.add('active');
+    if(this.value==='toplu') document.getElementById('block-c').classList.add('active');
+
+    // Ortak bloğu, kapanışı ve submit'i göster
+    document.getElementById('block-ortak').classList.add('active');
+    document.getElementById('kapaniskarti').style.display='block';
+    document.getElementById('submit-area').style.display='block';
+
+    // Seçimden sonra smooth scroll
+    setTimeout(()=>{
+      const aktif = document.querySelector('.block.active');
+      if(aktif) aktif.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 100);
+  });
+});
+
+// Scroll progress
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('pbar').style.width=Math.min(pct,100)+'%';
+});
+
+// ─── Google Sheets entegrasyonu ───────────────────────────────────────────
+// Apps Script'ten aldığın Web App URL'ini buraya yapıştır:
+const APPS_SCRIPT_URL = 'BURAYA_APPS_SCRIPT_URL_YAZ';
+
+document.getElementById('form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type=submit]');
+  btn.textContent = 'Gönderiliyor…'; btn.disabled = true;
+
+  // FormData'yı düz objeye çevir (checkbox için array)
+  const fd = new FormData(this);
+  const payload = {};
+  fd.forEach((val, key) => {
+    if (payload[key]) {
+      payload[key] = [].concat(payload[key], val);
+    } else {
+      payload[key] = val;
+    }
+  });
+  payload._timestamp = new Date().toISOString();
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',          // Apps Script CORS kısıtlaması — no-cors şart
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    // no-cors ile response okunamaz; başarı sayıyoruz
+    this.classList.add('gone');
+    document.getElementById('succ').classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch {
+    alert('Bağlantı hatası, lütfen internet bağlantınızı kontrol edin.');
+    btn.textContent = 'Anketi Gönder'; btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

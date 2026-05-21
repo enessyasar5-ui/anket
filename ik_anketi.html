@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İK Araştırması — Çalışan Deneyimi & Ulaşım</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,1,400;9..144,1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1B2D;--ink-mid:#2A3A52;
+  --paper:#F5F1EA;--paper-soft:#EBE5DA;
+  --accent:#C5532E;--accent-dim:rgba(197,83,46,.1);
+  --muted:#6B7A93;--line:rgba(15,27,45,.11);
+  --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Manrope',sans-serif;background:var(--paper);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse at 10% 0%,rgba(197,83,46,.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 90% 100%,rgba(15,27,45,.04) 0%,transparent 50%);
+  min-height:100vh;
+}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--paper-soft);z-index:100;}
+.progress-fill{height:100%;background:var(--accent);width:0%;transition:width .3s;}
+.wrap{max-width:740px;margin:0 auto;padding:60px 28px 100px;}
+
+/* HEADER */
+header{padding-bottom:44px;margin-bottom:56px;border-bottom:1.5px solid var(--ink);}
+.tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:24px;}
+.tag::before{content:'';width:20px;height:1.5px;background:var(--accent);}
+h1{font-family:'Fraunces',serif;font-size:clamp(32px,5vw,54px);line-height:1.06;font-weight:500;letter-spacing:-.025em;margin-bottom:18px;}
+h1 em{font-style:italic;color:var(--accent);}
+.lead{font-size:15.5px;color:var(--ink-mid);max-width:560px;line-height:1.7;}
+.meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:24px;font-size:12px;color:var(--muted);}
+.meta span{display:flex;align-items:center;gap:6px;}
+.meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+/* QUESTION */
+.q{background:rgba(255,255,255,.45);border:1px solid var(--line);border-radius:3px;padding:24px;margin-bottom:18px;transition:border-color .2s,background .2s;}
+.q:hover{border-color:rgba(15,27,45,.2);background:rgba(255,255,255,.62);}
+.q-label{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px;line-height:1.5;}
+.q-num{font-family:'Fraunces',serif;font-style:italic;color:var(--accent);margin-right:5px;}
+.q-hint{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.opt-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper-soft);padding:2px 7px;border-radius:2px;margin-left:8px;font-weight:600;vertical-align:middle;}
+
+/* OPTIONS */
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;cursor:pointer;font-size:14px;color:var(--ink-mid);transition:all .15s;line-height:1.45;}
+.opt:hover{border-color:var(--accent);background:var(--accent-dim);color:var(--ink);}
+.opt.sel{border-color:var(--accent);background:var(--accent-dim);color:var(--ink);}
+.opt input[type=radio],.opt input[type=checkbox]{appearance:none;-webkit-appearance:none;width:17px;height:17px;flex-shrink:0;margin-top:2px;border:1.5px solid var(--muted);background:white;cursor:pointer;position:relative;transition:all .15s;}
+.opt input[type=radio]{border-radius:50%;}
+.opt input[type=checkbox]{border-radius:2px;}
+.opt input[type=radio]:checked,.opt input[type=checkbox]:checked{border-color:var(--accent);background:var(--accent);}
+.opt input[type=radio]:checked::after{content:'';position:absolute;top:50%;left:50%;width:6px;height:6px;background:white;border-radius:50%;transform:translate(-50%,-50%);}
+.opt input[type=checkbox]:checked::after{content:'';position:absolute;top:1px;left:4px;width:5px;height:9px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg);}
+
+/* LIKERT */
+.lkwrap{overflow-x:auto;border:1px solid var(--line);border-radius:3px;margin-top:8px;}
+table.lk{width:100%;border-collapse:collapse;min-width:460px;}
+table.lk th,table.lk td{padding:10px 7px;text-align:center;border-bottom:1px solid var(--line);font-size:13px;}
+table.lk th{background:rgba(15,27,45,.04);font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);}
+table.lk th:first-child,table.lk td:first-child{text-align:left;padding-left:13px;width:44%;font-weight:500;color:var(--ink-mid);}
+table.lk tr:last-child td{border-bottom:none;}
+table.lk tr:hover td{background:rgba(197,83,46,.03);}
+table.lk input[type=radio]{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:1.5px solid var(--muted);background:white;cursor:pointer;border-radius:50%;position:relative;transition:all .15s;}
+table.lk input[type=radio]:hover{border-color:var(--accent);}
+table.lk input[type=radio]:checked{border-color:var(--accent);background:var(--accent);}
+table.lk input[type=radio]:checked::after{content:'';position:absolute;top:50%;left:50%;width:6px;height:6px;background:white;border-radius:50%;transform:translate(-50%,-50%);}
+.lk-hint{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;font-style:italic;font-family:'Fraunces',serif;}
+
+/* TEXT */
+input[type=text],textarea{width:100%;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-family:'Manrope',sans-serif;font-size:14px;color:var(--ink);transition:border-color .15s;}
+input[type=text]:focus,textarea:focus{outline:none;border-color:var(--accent);background:white;}
+textarea{min-height:85px;resize:vertical;line-height:1.6;}
+
+/* KAPANIŞ KARTI */
+.closing{
+  margin-top:56px;padding:44px;
+  background:var(--ink);color:var(--paper);
+  border-radius:3px;position:relative;overflow:hidden;
+}
+.closing::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(197,83,46,.38) 0%,transparent 70%);}
+.closing-thanks{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:rgba(245,241,234,.6);margin-bottom:20px;position:relative;}
+.closing h2{font-family:'Fraunces',serif;font-size:22px;font-weight:500;line-height:1.3;letter-spacing:-.01em;margin-bottom:18px;position:relative;color:var(--paper);}
+.closing-desc{font-size:14px;color:rgba(245,241,234,.78);line-height:1.7;margin-bottom:24px;position:relative;}
+.closing-items{list-style:none;position:relative;margin-bottom:28px;}
+.closing-items li{padding:11px 0 11px 28px;position:relative;color:rgba(245,241,234,.88);font-size:13.5px;border-bottom:1px solid rgba(245,241,234,.1);line-height:1.55;}
+.closing-items li:last-child{border-bottom:none;}
+.closing-items li::before{content:'→';position:absolute;left:0;top:11px;color:var(--accent);font-weight:700;}
+.closing-items li strong{color:var(--paper);font-weight:700;}
+.vid-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;background:var(--accent);color:white;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.03em;border-radius:3px;transition:background .15s;position:relative;}
+.vid-btn:hover{background:#a8421f;}
+.vid-btn::after{content:'↗';font-size:15px;}
+
+/* SUBMIT */
+.submit-area{margin-top:52px;padding-top:36px;border-top:1.5px solid var(--ink);text-align:center;}
+button[type=submit]{background:var(--ink);color:var(--paper);border:none;padding:18px 44px;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all .2s;}
+button[type=submit]:hover{background:var(--accent);transform:translateY(-1px);box-shadow:0 8px 24px rgba(197,83,46,.28);}
+.submit-note{margin-top:12px;font-size:11px;color:var(--muted);font-style:italic;font-family:'Fraunces',serif;}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:80px 20px;}
+.success.on{display:block;}
+.success h2{font-family:'Fraunces',serif;font-size:36px;font-weight:500;margin-bottom:12px;}
+.success p{color:var(--ink-mid);max-width:400px;margin:0 auto;font-size:15px;}
+form.gone{display:none;}
+.ornament{text-align:center;margin:72px 0 14px;font-family:'Fraunces',serif;color:var(--muted);letter-spacing:.8em;font-size:13px;}
+
+@media(max-width:580px){
+  .wrap{padding:36px 16px 72px;}
+  .q{padding:18px;}
+  .closing{padding:26px;}
+  h1{font-size:28px;}
+}
+</style>
+</head>
+<body>
+<div class="progress"><div class="progress-fill" id="pbar"></div></div>
+<div class="wrap">
+
+<header>
+  <div class="tag">İK Araştırması · 2026</div>
+  <h1>Çalışan deneyimini <em>yeniden</em> düşünmek için bir araştırma.</h1>
+  <p class="lead">Bu anket, çalışan deneyimi, kurum içi sosyal etkileşim ve ulaşım yönetimi alanlarında geliştirilen bir platform için hazırlanmıştır. Amacımız ürün tanıtmak değil; kurumların bu alanlarda gerçekte ne yaşadığını öğrenmektir.</p>
+  <div class="meta">
+    <span>Tahmini süre: 5–7 dk</span>
+    <span>Anonim yanıt</span>
+    <span>11 soru</span>
+  </div>
+</header>
+
+<form id="form" action="https://formspree.io/f/xpqnzeoo" method="POST">
+
+<!-- S1 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S1.</span>Kurumunuzdaki tahmini çalışan sayısı hangi aralıktadır?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s1" value="1_50"><span>1 – 50</span></label>
+    <label class="opt"><input type="radio" name="s1" value="51_200"><span>51 – 200</span></label>
+    <label class="opt"><input type="radio" name="s1" value="201_500"><span>201 – 500</span></label>
+    <label class="opt"><input type="radio" name="s1" value="500+"><span>500+</span></label>
+  </div>
+</div>
+
+<!-- S2 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S2.</span>Çalışanların sabah mesaisine başlarken yaşadığı ulaşım ve otopark sorunlarının ilk saat verimliliğine ve sabah motivasyonuna etkisini nasıl değerlendirirsiniz?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s2" value="etki_yok"><span>Gözle görülür bir verim veya zaman kaybı yaşanmıyor.</span></label>
+    <label class="opt"><input type="radio" name="s2" value="belirli"><span>Belirli lokasyonlardan gelen / araç kullanan personelde stres ve gecikme yaratıyor.</span></label>
+    <label class="opt"><input type="radio" name="s2" value="ciddi"><span>Bu durum düzenli bir şikayet konusu ve sabah mesaisinin verimini doğrudan düşürüyor.</span></label>
+  </div>
+</div>
+
+<!-- S3 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S3.</span>Kurum içi bir etkinlik düzenlerken mekan araştırması, katılım takibi, ödeme planlaması ve iptallerin yönetimi gibi idari süreçler departmanınızda ne kadarlık bir yük oluşturuyor?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s3" value="otomatik"><span>Süreçler tamamen otomatik, mesai kaybı yaşamıyoruz.</span></label>
+    <label class="opt"><input type="radio" name="s3" value="tolere"><span>Ayda birkaç saatimizi alan, tolere edilebilir bir yük.</span></label>
+    <label class="opt"><input type="radio" name="s3" value="manuel"><span>Oldukça manuel ilerliyor, operasyonel olarak ciddi bir zaman ve enerji tüketiyor.</span></label>
+  </div>
+</div>
+
+<!-- S4 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S4.</span>Çalışan bağlılığını artırmak için ayırdığınız bütçe ve eforun yatırım getirisini (ROI) veriye dayalı olarak ölçebiliyor musunuz?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s4" value="evet"><span>Evet, katılım oranlarını ve kültürel etkisini net metriklerle ölçebiliyoruz.</span></label>
+    <label class="opt"><input type="radio" name="s4" value="kismi"><span>Katılımı kısmen gözlemliyoruz ancak kültürel etkiyi ölçemiyoruz.</span></label>
+    <label class="opt"><input type="radio" name="s4" value="hayir"><span>Hayır, etkinliklerin kime ulaştığını ve yatırımın karşılığını tam olarak raporlayamıyoruz.</span></label>
+  </div>
+</div>
+
+<!-- S5 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S5.</span>Sosyal izolasyon ve departmanlar arası kopukluğun personel devir oranına dolaylı bir etkisi olduğunu düşünüyor musunuz?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s5" value="hayir"><span>Hayır, iletişim seviyemiz personel tutma oranımızı olumsuz etkilemiyor.</span></label>
+    <label class="opt"><input type="radio" name="s5" value="kismi"><span>Kısmen etkisi olduğunu düşünüyoruz ancak doğrudan bir korelasyon kuramıyoruz.</span></label>
+    <label class="opt"><input type="radio" name="s5" value="evet"><span>Sosyal bağların zayıf olması kurum aidiyetini kesinlikle düşürüyor.</span></label>
+  </div>
+</div>
+
+<!-- S6 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S6.</span>Çalışanlarınızın yalnızca lokasyon olarak yakın konumdaki, zaten işe giden kendi aracını kullanan sürücülerle aynı güzergahta kurumsal olarak doğrulanmış diğer şirket çalışanlarının güvenli bir yolculuk paylaşım sistemi üzerinden eşleşmesi fikrine nasıl yaklaşırsınız?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s6" value="kapali"><span>Güvenlik ve kurum politikaları gereği prensip olarak kapalıyız.</span></label>
+    <label class="opt"><input type="radio" name="s6" value="kosullu"><span>Kimlik doğrulama, KVKK ve kapalı devre sistem gibi katı şartlar sağlanırsa değerlendirebiliriz.</span></label>
+    <label class="opt"><input type="radio" name="s6" value="olumlu"><span>Operasyonel maliyetleri ve karbon ayak izini düşüreceği için doğrudan olumlu yaklaşırız.</span></label>
+  </div>
+</div>
+
+<!-- S7 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S7.</span>Kurum içi etkinliklerin mekan araştırması, rezervasyon ve ödeme takibinden katılım raporlamasına kadar tek bir platform üzerinden yönetilmesine bakışınız nedir?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s7" value="manuel"><span>İdari bir kolaylık sağlasa da etkinlikleri kendi içimizde manuel planlamayı tercih ederiz.</span></label>
+    <label class="opt"><input type="radio" name="s7" value="dene"><span>Mekan araştırma, rezervasyon ve ödeme takibi gibi idari yükleri üzerimizden alacağı için denemeye açığız.</span></label>
+    <label class="opt"><input type="radio" name="s7" value="evet"><span>Hem operasyonel yükü sıfırlayacağı hem de katılım metriklerini sunacağı için kesinlikle isteriz.</span></label>
+  </div>
+</div>
+
+<!-- S8 -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S8.</span>Bu iki çözümün (ulaşım havuzu ve etkinlik pazar yeri) tek bir yönetici paneli üzerinden raporlanabilir bütünleşik bir ekosistem olarak sunulması kararınızı nasıl etkiler?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s8" value="risk"><span>Tüm süreçlerin tek platformda toplanması güvenlik veya operasyonel risk yaratabilir.</span></label>
+    <label class="opt"><input type="radio" name="s8" value="fark_etmez"><span>Çözümlerin ayrı ayrı veya tek platformda sunulması bizim için kritik bir fark yaratmaz.</span></label>
+    <label class="opt"><input type="radio" name="s8" value="olumlu"><span>Tek bir platform üzerinden yönetilmesi; raporlamayı, bütçe kontrolünü ve kurum içi adaptasyonu kesinlikle kolaylaştırır.</span></label>
+  </div>
+</div>
+
+<!-- S9 — KARAR SÜRECİ -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S9.</span>Bu tür bir platform için satın alma kararı kurumunuzda genellikle nasıl işler?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s9" value="ik"><span>İK departmanı tek başına karar verebilir.</span></label>
+    <label class="opt"><input type="radio" name="s9" value="ik_cfo"><span>İK önerir, CFO / Mali İşler onaylar.</span></label>
+    <label class="opt"><input type="radio" name="s9" value="ik_ust"><span>İK önerir, üst yönetim onaylar.</span></label>
+    <label class="opt"><input type="radio" name="s9" value="rfp"><span>Çok aşamalı satınalma süreci gerekir (ihale, RFP vb.).</span></label>
+  </div>
+</div>
+
+<!-- S10 — PİLOT -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S10.</span>Şirketinizde 50–100 kişilik, 2–3 aylık ücretsiz bir pilot çalışma yapılsa nasıl yaklaşırsınız?</div>
+  <div class="opts">
+    <label class="opt"><input type="radio" name="s10" value="hayir"><span>Hayır, prensip olarak pilot çalışmalara katılmıyoruz.</span></label>
+    <label class="opt"><input type="radio" name="s10" value="zor"><span>Onay süreci uzun, gerçekçi değil.</span></label>
+    <label class="opt"><input type="radio" name="s10" value="kosullu"><span>Doğru koşullar sağlanırsa (KVKK, sigorta vb.) değerlendirebilirim.</span></label>
+    <label class="opt"><input type="radio" name="s10" value="evet"><span>Evet, ilgilenirim.</span></label>
+    <label class="opt"><input type="radio" name="s10" value="aktif"><span>Evet, şu an aktif olarak böyle bir çözüm arıyoruz.</span></label>
+  </div>
+</div>
+
+<!-- S11 — AÇIK UÇLU ENGEL -->
+<div class="q">
+  <div class="q-label"><span class="q-num">S11.</span>Böyle bir platformu değerlendirmemeniz için aklınıza gelen en büyük engel nedir?<span class="opt-tag">opsiyonel</span></div>
+  <div class="q-hint">Açıkça yazabilirsiniz — en faydalı veri buradan çıkıyor.</div>
+  <textarea name="s11_engel" placeholder="Endişenizi veya çekincenizi yazın..."></textarea>
+</div>
+
+<!-- KAPANIŞ KARTI -->
+<div class="closing">
+  <p class="closing-thanks">Zaman ayırdığınız için teşekkür ederiz.</p>
+  <h2>Verdiğiniz yanıtlar, şirketlerin kültür yönetimi ve personel ulaşımında yaşadığı "görünmez mesai ve maliyet kayıplarını" ortadan kaldırmak için kurduğumuz B2B ekosistemin saha doğrulamasında kullanılacaktır.</h2>
+  <p class="closing-desc">Az önce bahsi geçen idari yükleri, tek bir yönetici paneli üzerinden şu şekilde çözüyoruz:</p>
+  <ul class="closing-items">
+    <li><strong>Ulaşım ve Otopark Optimizasyonu:</strong> Zaten işe giden kendi aracını kullanan çalışanları aynı güzergahtaki kurumsal olarak doğrulanmış personelle eşleştirerek boş koltuk maliyetlerini değere dönüştürüyor, otopark kapasite krizini ve işe geliş stresini sıfırlıyoruz.</li>
+    <li><strong>Sıfır İdari Mesai:</strong> Etkinlik mekanı bulma, rezervasyon, ödeme planlaması ve katılım takibi gibi manuel süreçleri tek tıkla çalışan bir pazar yeri otomasyonuna devrediyoruz.</li>
+    <li><strong>Ölçülebilir Kurum Kültürü:</strong> Sosyal izolasyonu kırmak için yapılan tüm etkinlik yatırımlarını, ROI raporlarıyla İK departmanının önüne net veriler olarak sunuyoruz.</li>
+  </ul>
+  <p class="closing-desc" style="margin-bottom:20px;">Platformun nasıl çalıştığını merak ediyorsanız kısa tanıtım videomuza göz atabilirsiniz:</p>
+  <a href="#" class="vid-btn">Tanıtım videosunu izle</a>
+</div>
+
+<div class="submit-area">
+  <button type="submit">Anketi Gönder</button>
+  <p class="submit-note">Yanıtlarınız anonim olarak değerlendirilecektir.</p>
+</div>
+
+</form>
+
+<div class="success" id="succ">
+  <h2>Teşekkür ederiz.</h2>
+  <p>Yanıtlarınız bize ulaştı. Çalışan deneyimi alanında daha iyi bir çözüm geliştirebilmemiz için ayırdığınız vakit için minnettarız.</p>
+</div>
+
+<div class="ornament">· · ·</div>
+</div>
+
+<script>
+document.querySelectorAll('.opt input').forEach(inp=>{
+  inp.addEventListener('change',function(){
+    if(this.type==='radio'){
+      document.querySelectorAll(`input[name="${this.name}"]`).forEach(r=>r.closest('.opt')?.classList.remove('sel'));
+      this.closest('.opt').classList.add('sel');
+    } else {
+      this.closest('.opt').classList.toggle('sel',this.checked);
+    }
+  });
+});
+
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('pbar').style.width=Math.min(pct,100)+'%';
+});
+
+document.getElementById('form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=this.querySelector('button[type=submit]');
+  btn.textContent='Gönderiliyor…';btn.disabled=true;
+  try{
+    const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    if(res.ok){
+      this.classList.add('gone');
+      document.getElementById('succ').classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      const j=await res.json().catch(()=>({}));
+      alert(j.errors?.[0]?.message||'Bir hata oluştu, lütfen tekrar deneyin.');
+      btn.textContent='Anketi Gönder';btn.disabled=false;
+    }
+  }catch{
+    alert('Bağlantı hatası, lütfen internet bağlantınızı kontrol edin.');
+    btn.textContent='Anketi Gönder';btn.disabled=false;
+  }
+});
+</script>
+</body>
+</html>
