@@ -135,6 +135,8 @@ form.gone{display:none;}
 </header>
 
 <form id="form" action="https://formspree.io/f/xpqnzeoo" method="POST">
+<input type="hidden" name="_subject" value="İK Anketi — Yeni Yanıt">
+<input type="hidden" name="_replyto" id="replyto_field" value="">
 
 <!-- S1 -->
 <div class="q">
@@ -247,6 +249,17 @@ form.gone{display:none;}
   <textarea name="s11_engel" placeholder="Endişenizi veya çekincenizi yazın..."></textarea>
 </div>
 
+<!-- İLETİŞİM — OPSİYONEL -->
+<div class="q" id="contact-block">
+  <div class="q-label">İletişim bilgileri <span class="opt-tag">opsiyonel</span></div>
+  <div class="q-hint">Pilot programa veya görüşmeye açıksanız adınızı ve e-postanızı bırakabilirsiniz. Paylaşmak istemiyorsanız bu bölümü atlayın.</div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <input type="text" name="contact_ad" placeholder="Adınız / Soyadınız">
+    <input type="text" name="contact_sirket" placeholder="Şirket adı">
+    <input type="email" name="contact_email" id="contact_email" placeholder="E-posta adresiniz" autocomplete="email">
+  </div>
+</div>
+
 <!-- KAPANIŞ KARTI -->
 <div class="closing">
   <p class="closing-thanks">Zaman ayırdığınız için teşekkür ederiz.</p>
@@ -277,6 +290,10 @@ form.gone{display:none;}
 </div>
 
 <script>
+document.getElementById('contact_email')?.addEventListener('input',function(){
+  document.getElementById('replyto_field').value=this.value;
+});
+
 document.querySelectorAll('.opt input').forEach(inp=>{
   inp.addEventListener('change',function(){
     if(this.type==='radio'){
