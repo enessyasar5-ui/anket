@@ -135,6 +135,7 @@ form.gone{display:none;}
 </header>
 
 <form id="form" action="https://formspree.io/f/xpqnzeoo" method="POST">
+<input type="hidden" name="_subject" value="İK Anketi — Yeni Yanıt">
 
 <!-- S1 -->
 <div class="q">
@@ -245,6 +246,17 @@ form.gone{display:none;}
   <div class="q-label"><span class="q-num">S11.</span>Böyle bir platformu değerlendirmemeniz için aklınıza gelen en büyük engel nedir?<span class="opt-tag">opsiyonel</span></div>
   <div class="q-hint">Açıkça yazabilirsiniz — en faydalı veri buradan çıkıyor.</div>
   <textarea name="s11_engel" placeholder="Endişenizi veya çekincenizi yazın..."></textarea>
+</div>
+
+<!-- İLETİŞİM — OPSİYONEL -->
+<div class="q" id="contact-block">
+  <div class="q-label">İletişim bilgileri <span class="opt-tag">opsiyonel</span></div>
+  <div class="q-hint">Pilot programa veya görüşmeye açıksanız adınızı ve e-postanızı bırakabilirsiniz. Paylaşmak istemiyorsanız bu bölümü atlayın.</div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <input type="text" name="contact_ad" placeholder="Adınız / Soyadınız">
+    <input type="text" name="contact_sirket" placeholder="Şirket adı">
+    <input type="email" name="contact_email" id="contact_email" placeholder="E-posta adresiniz" autocomplete="email">
+  </div>
 </div>
 
 <!-- KAPANIŞ KARTI -->
