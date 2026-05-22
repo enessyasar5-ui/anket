@@ -136,7 +136,6 @@ form.gone{display:none;}
 
 <form id="form" action="https://formspree.io/f/xpqnzeoo" method="POST">
 <input type="hidden" name="_subject" value="İK Anketi — Yeni Yanıt">
-<input type="hidden" name="_replyto" id="replyto_field" value="">
 
 <!-- S1 -->
 <div class="q">
@@ -290,10 +289,6 @@ form.gone{display:none;}
 </div>
 
 <script>
-document.getElementById('contact_email')?.addEventListener('input',function(){
-  document.getElementById('replyto_field').value=this.value;
-});
-
 document.querySelectorAll('.opt input').forEach(inp=>{
   inp.addEventListener('change',function(){
     if(this.type==='radio'){
